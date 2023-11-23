@@ -4,33 +4,24 @@ This code implements a reinforcement learning model for a toy example of a retai
 
 ## Policy Iteration
 
-**Algorithm Overview**
+Policy Iteration is an iterative algorithm used in reinforcement learning for finding the optimal policy. It combines policy evaluation and improvement steps to converge to an optimal policy. The algorithm follows these steps:
 
-Policy Iteration is an iterative algorithm in reinforcement learning used to find the optimal policy by alternating between policy evaluation and policy improvement steps.
+1. **Policy Evaluation**:
+   - Given a policy π, compute the state-value function ![Vπ](https://latex.codecogs.com/svg.latex?V_%5Cpi) using the Bellman equation:
 
-### Steps:
-
-1. **Policy Evaluation**:  
-   Evaluate the value function \( V^{\pi}(s) \) for the current policy \(\pi\).
+   ![Bellman Expectation Equation](https://latex.codecogs.com/svg.latex?V_%5Cpi%28s%29%20%3D%20%5Csum_%7Ba%7D%20%5Cpi%28a%7Cs%29%20%5Csum_%7Bs%27%2Cr%7D%20p%28s%27%2C%20r%7Cs%2C%20a%29%20%5B%20r%20&plus;%20%5Cgamma%20%5Ccdot%20V_%5Cpi%28s%27%29%20%5D)
    
-   \[ V^{\pi}(s) = \sum_{s', r} p(s', r \mid s, \pi(s)) \cdot [r + \gamma \cdot V^{\pi}(s')] \]
-   
-2. **Policy Improvement**:  
-   Improve the policy by selecting actions greedily based on the computed value function.
-   
-   \[ \pi_{\text{new}}(s) = \text{argmax}_a \sum_{s', r} p(s', r \mid s, a) \cdot [r + \gamma \cdot V^{\pi}(s')] \]
-   
-3. **Iteration**:  
-   Repeat steps 1 and 2 until the policy converges to the optimal policy \(\pi^*\).
+2. **Policy Improvement**:
+   - Update the policy by selecting the actions that maximize the expected future rewards. 
 
-### Convergence:
+   ![Policy Update Equation](https://latex.codecogs.com/svg.latex?%5Cpi%27%28s%29%20%3D%20%5Carg%5Cmax_%7Ba%7D%20%5Csum_%7Bs%27%2Cr%7D%20p%28s%27%2C%20r%7Cs%2C%20a%29%20%5B%20r%20&plus;%20%5Cgamma%20%5Ccdot%20V_%5Cpi%28s%27%29%20%5D)
 
-- **Guaranteed Convergence**:  
-  Policy Iteration converges to the optimal policy for finite Markov Decision Processes (MDPs) under certain conditions:
-  - Finite state and action spaces
-  - Accurate representation of the environment's dynamics
+3. **Iteration**:
+   - Repeat policy evaluation and improvement until convergence to the optimal policy ![π*](https://latex.codecogs.com/svg.latex?%5Cpi%5E%2A).
 
-  ### Q-Learning
+Policy Iteration seeks to find the best policy by iteratively evaluating and updating policies based on the expected rewards and transitions between states, aiming to converge to the optimal policy that maximizes cumulative rewards.
+
+## Q-Learning
 
 Q-Learning is a model-free, off-policy reinforcement learning algorithm that learns the value of state-action pairs. It's based on the Bellman equation and updates its Q-values iteratively using a greedy policy and the following update rule:
 
