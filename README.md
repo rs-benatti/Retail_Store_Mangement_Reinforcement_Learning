@@ -1,4 +1,4 @@
-# Reatil Store
+# Retail Store
 
 This code implements a reinforcement learning model for a toy example of a retail store. It implements simple algorithms with the toys examples: the Q Learning and Policy Iteration.
 
